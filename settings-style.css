@@ -1,0 +1,42 @@
+.settings {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  color: black;
+  gap: 5px;
+}
+
+.settings button {
+  height: 35px;
+  width: 200px;
+  background-color: #62825D;
+  border-radius: 10px;
+  border: 0;
+  color: white;
+  font-size: 1.5rem;
+  grid-column: 2;
+  margin-top: 10px;
+}
+
+.settings label {
+  font-size: 1.2rem;
+  align-self: end;
+}
+
+.settings input {
+  align-self: start;
+  height: 2rem;
+}
+
+.settings button:hover {
+  background-color: #7fda7c;
+  cursor: pointer;
+}
+
+.settings button:active {
+  background-color: #62825D;
+}
+
+@media (max-width:650px) {
+  
+}

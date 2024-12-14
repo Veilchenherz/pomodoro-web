@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pomodoro-Timer</title>
     <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./settings-style.css" />
   </head>
   <body>
     <div id="whole-page">
@@ -18,7 +19,19 @@
         <a class="navbar" id="settings" href="./index.html">Home</a>
       </div>
 
-      <div class="main-page"></div>
+      <div class="main-page">
+        <h1>Settings</h1>
+
+        <div class="settings">
+          <label for="work">Duration Working</label>
+          <label for="short">Duration Short Break</label>
+          <label for="long">Duration Long Break</label>
+          <input type="text" id="work-input" name="work" />
+          <input type="text" id="short-input" name="short" />
+          <input type="text" id="long-input" name="long" />
+          <button>Save</button>
+        </div>
+      </div>
 
       <div id="footer">
         <a
