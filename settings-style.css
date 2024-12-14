@@ -38,5 +38,47 @@
 }
 
 @media (max-width:650px) {
+  .settings {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(6, 1fr) 1.5fr;
+  }
+
+  .settings * {
+    grid-column-start: 1;
+  }
+
+  #save-button {
+    grid-column-start: 1;
+    align-self: end;
+  }
+
+  #work-label {
+    order: 0;
+  }
+
+  #short-label {
+    order: 2;
+  }
+
+  #long-label {
+    order: 4;
+  }
+
+  #work-input {
+    order: 1;
+  }
+
+  #short-input {
+    order: 3;
+  }
+
+  #long-input {
+    order: 5;
+  }
+
+  #save-button {
+    order: 6;
+  }
   
+
 }
