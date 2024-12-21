@@ -1,31 +1,60 @@
+#footer {
+  margin-top: auto;
+}
+
+.main-page {
+  height: 100vh;
+  max-height: 480px;
+  gap: 0;
+}
+
+h1 {
+  margin-bottom: 20px;
+  font-size: 2rem;
+}
+
 .settings {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
-  color: black;
+  grid-template-columns: 102px 60px;
+  grid-template-rows: repeat(6, 1fr) 1.5fr;
   gap: 5px;
 }
 
+.settings * {
+  grid-column-start: 1;
+}
+
+
 .settings button {
   height: 35px;
-  width: 200px;
-  background-color: #62825D;
-  border-radius: 10px;
+  width: 170px;
+  background-color: #6cb86a;
+  border-radius: 50px;
   border: 0;
   color: white;
   font-size: 1.5rem;
   grid-column: 2;
-  margin-top: 10px;
+  margin-top: 30px;
+  justify-self: stretch;
 }
 
 .settings label {
   font-size: 1.2rem;
   align-self: end;
+  color: white;
+  width: 180px;
+  text-align: center;
 }
 
 .settings input {
   align-self: start;
   height: 2rem;
+  border: 0;
+  background-color: #6cb86a;
+  color: white;
+  text-align: center;
+  font-size: 1.2rem;
+  width: 100px;
 }
 
 .settings button:hover {
@@ -37,48 +66,60 @@
   background-color: #62825D;
 }
 
-@media (max-width:650px) {
-  .settings {
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(6, 1fr) 1.5fr;
-  }
-
-  .settings * {
-    grid-column-start: 1;
-  }
-
-  #save-button {
-    grid-column-start: 1;
-    align-self: end;
-  }
-
-  #work-label {
-    order: 0;
-  }
-
-  #short-label {
-    order: 2;
-  }
-
-  #long-label {
-    order: 4;
-  }
-
-  #work-input {
-    order: 1;
-  }
-
-  #short-input {
-    order: 3;
-  }
-
-  #long-input {
-    order: 5;
-  }
-
-  #save-button {
-    order: 6;
-  }
-  
-
+#save-button {
+  grid-column-start: 1;
+  align-self: end;
 }
+
+#work-label {
+  order: 0;
+}
+
+#short-label {
+  order: 3;
+}
+
+#long-label {
+  order: 6;
+}
+
+#work-input {
+  order: 1;
+  border-radius: 50px 0px 0px 50px;
+}
+
+#short-input {
+  order: 4;
+  border-radius: 50px 0px 0px 50px;
+}
+
+#long-input {
+  order: 7;
+  border-radius: 50px 0px 0px 50px;
+}
+
+#save-button {
+  order: 9;
+}
+
+#work-min {
+  order: 2;
+  grid-column-start: 2;
+  border-radius: 0px 50px 50px 0px;
+  width: 60px;
+}
+
+#short-min {
+  order: 5;
+  grid-column-start: 2;
+  border-radius: 0px 50px 50px 0px;
+  width: 60px;
+}
+
+#long-min {
+  order: 8;
+  grid-column-start: 2;
+  border-radius: 0px 50px 50px 0px;
+  width: 60px;
+}
+
