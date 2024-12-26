@@ -21,7 +21,7 @@ body {
   background-color: #62825D;
   display: flex;
   align-items: center;
-  opacity: 0.6;
+  opacity: 0.7;
   margin-bottom: auto;
 }
 
@@ -40,6 +40,14 @@ body {
   margin-right: 25px;
   text-decoration: none;
   color: white
+}
+
+#footer p {
+  font-size: 1.6rem;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-right: auto;
+  margin-left: 25px;
 }
 
 #footer a:hover {
