@@ -3,6 +3,7 @@ let shortBreakDuration = 5;
 let longBreakDuration = 20;
 
 let timerID = null;
+let timerRunning = false;
 
 
 // takes minutes and seconds as input and displays those on the screen 
@@ -30,32 +31,11 @@ function displayTimer(minutes, seconds) {
 // displays the current action the user is supposed to do 
 // (work, short break, long break)
 // displays "Pomodoro", if repetitions is equal to zero (used while timer is not running)
-function displayAction (repetitions) {
+function displayAction (actionText) {
 
-    switch (0) {
+    document.getElementById("heading").innerText = actionText;
 
-        case (repetitions): {
-            document.getElementById("heading").innerText = "Pomodoro";
-            break;
-        }
-
-        case (repetitions % 8): {
-            document.getElementById("heading").innerText = "Long Break";
-            break;
-        }
-
-        case (repetitions % 2): {
-            document.getElementById("heading").innerText = "Short Break";
-            break;
-        }
-
-        default: {
-            document.getElementById("heading").innerText = "Work";
-        }
-
-    }
 }
-
 
 
 //takes time in seconds as input and counts down from the given time to zero
@@ -82,6 +62,46 @@ function resetTimer () {
     }
 }
 
+
+// controls the flow of the different stages while running the pomodoro app
+// starts the correct timers according to the number of repetitions
+function pomodoroFlow(workDur, shortDur, longDur, repetitions) {
+
+    let workDurationSeconds = workDur * 60;
+    let shortDurationSeconds = shortDur * 60;
+    let longDurationSeconds = longDur * 60;
+
+    timerRunning = true;
+
+    while (timerRunning) {
+
+        repetitions++;
+        displayAction(repetitions);
+
+        switch (0) {
+
+            case (repetitions % 8): {
+                displayAction("Long Break")
+                pomodoroTimer(longDurationSeconds);
+            }
+
+            case (repetitions % 2): {
+                displayAction("Short Break")
+                pomodoroTimer(shortDurationSeconds);
+            }
+
+            default: {
+                displayAction("Work")
+                pomodoroTimer(workDurationSeconds);
+            }
+        } 
+        
+    }
+    
+
+
+    
+}
 
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("start").addEventListener("click", () => pomodoroTimer(workingDuration * 60));
