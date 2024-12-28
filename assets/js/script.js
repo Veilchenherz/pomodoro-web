@@ -28,10 +28,8 @@ function displayTimer(minutes, seconds) {
 }
 
 
-// takes the number of repetitions as an input
-// displays the current action the user is supposed to do 
-// (work, short break, long break)
-// displays "Pomodoro", if repetitions is equal to zero (used while timer is not running)
+// displays a string on the heading field of the pomodoro-card
+// takes the string to display as an input
 function displayAction (actionText) {
 
     document.getElementById("heading").innerText = actionText;
@@ -39,7 +37,7 @@ function displayAction (actionText) {
 }
 
 
-//takes time in seconds as input and counts down from the given time to zero
+// takes time in seconds as input and counts down from the given time to zero
 async function pomodoroTimer (duration) {
 
     return new Promise((resolve) => {
@@ -60,6 +58,8 @@ async function pomodoroTimer (duration) {
     });
 }
 
+
+// resets the timer and the repetitions to zero
 function resetTimer () {
     displayAction("Pomodoro");
     if (timerID !== null) {
@@ -113,11 +113,13 @@ async function pomodoroFlow(workDur, shortDur, longDur, repetitions) {
                 
             }
         } 
-        
     }
-    
 }
 
+
+// waits for loading of the DOM
+// then assignes the start button to call the pomodoroFlow function
+// and the reset button to call the resetTimer function
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("start").addEventListener("click", 
         () => pomodoroFlow(
