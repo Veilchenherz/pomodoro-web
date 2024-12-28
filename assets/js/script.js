@@ -1,6 +1,7 @@
 let workingDuration = 25;
 let shortBreakDuration = 5;
 let longBreakDuration = 20;
+let repetitions = 0;
 
 let timerID = null;
 let timerRunning = false;
@@ -39,33 +40,40 @@ function displayAction (actionText) {
 
 
 //takes time in seconds as input and counts down from the given time to zero
-function pomodoroTimer (duration) {
+async function pomodoroTimer (duration) {
 
-    timerID = setInterval(function timeStep() {
-        let secondsLeft = duration % 60;
-        let minutesLeft = Math.floor(duration / 60);
+    return new Promise((resolve) => {
+        timerID = setInterval(function timeStep() {
+            let secondsLeft = duration % 60;
+            let minutesLeft = Math.floor(duration / 60);
 
-        displayTimer(minutesLeft, secondsLeft);
-        
-        console.log(minutesLeft + ":" + secondsLeft);
-        duration--;
+            displayTimer(minutesLeft, secondsLeft);
+            
+            console.log(minutesLeft + ":" + secondsLeft);
+            duration--;
 
-        if (duration < 0) {
-            clearInterval(timerID);
-        }
-    }, 1000);
+            if (duration < 0) {
+                clearInterval(timerID);
+                resolve(false);
+            }
+        }, 1000);
+    });
 }
 
 function resetTimer () {
-    if (!timerID) {
+    displayAction("Pomodoro");
+    if (timerID !== null) {
         clearInterval(timerID);
+        timerRunning = false;
+        displayTimer(0, 0);
+        repetitions = 0;
     }
 }
 
 
 // controls the flow of the different stages while running the pomodoro app
 // starts the correct timers according to the number of repetitions
-function pomodoroFlow(workDur, shortDur, longDur, repetitions) {
+async function pomodoroFlow(workDur, shortDur, longDur, repetitions) {
 
     let workDurationSeconds = workDur * 60;
     let shortDurationSeconds = shortDur * 60;
@@ -76,35 +84,48 @@ function pomodoroFlow(workDur, shortDur, longDur, repetitions) {
     while (timerRunning) {
 
         repetitions++;
-        displayAction(repetitions);
+
+        let returnValue = true;
 
         switch (0) {
 
             case (repetitions % 8): {
                 displayAction("Long Break");
-                pomodoroTimer(longDurationSeconds);
+                while (returnValue) {
+                    returnValue = await pomodoroTimer(longDurationSeconds);
+                }
+                break;
             }
 
             case (repetitions % 2): {
                 displayAction("Short Break");
-                pomodoroTimer(shortDurationSeconds);
+                while (returnValue) {
+                    returnValue = await pomodoroTimer(shortDurationSeconds);
+                }
+                break;
             }
 
             default: {
                 displayAction("Work");
-                pomodoroTimer(workDurationSeconds);
+                while (returnValue) {
+                    returnValue = await pomodoroTimer(workDurationSeconds);
+                }
+                
             }
         } 
         
     }
     
-
-
-    
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("start").addEventListener("click", () => pomodoroTimer(workingDuration * 60));
+    document.getElementById("start").addEventListener("click", 
+        () => pomodoroFlow(
+            workingDuration, 
+            shortBreakDuration, 
+            longBreakDuration, 
+            repetitions
+        ));
     document.getElementById("reset").addEventListener("click", () => resetTimer());
 });
 
