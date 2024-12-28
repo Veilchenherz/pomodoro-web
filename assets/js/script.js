@@ -81,17 +81,17 @@ function pomodoroFlow(workDur, shortDur, longDur, repetitions) {
         switch (0) {
 
             case (repetitions % 8): {
-                displayAction("Long Break")
+                displayAction("Long Break");
                 pomodoroTimer(longDurationSeconds);
             }
 
             case (repetitions % 2): {
-                displayAction("Short Break")
+                displayAction("Short Break");
                 pomodoroTimer(shortDurationSeconds);
             }
 
             default: {
-                displayAction("Work")
+                displayAction("Work");
                 pomodoroTimer(workDurationSeconds);
             }
         } 
