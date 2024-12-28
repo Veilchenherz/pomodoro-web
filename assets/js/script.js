@@ -38,7 +38,7 @@ function displayAction (actionText) {
 
 
 // takes time in seconds as input and counts down from the given time to zero
-// returns false as soon as the timer reached zero
+// returns false as soon as the timer reaches zero
 async function pomodoroTimer (duration) {
 
     return new Promise((resolve) => {
