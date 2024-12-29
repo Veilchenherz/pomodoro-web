@@ -140,6 +140,15 @@ async function loadPage(page) {
 
 // toggles between the main pomodoro timer page and the settings page
 function togglePages() {
+    
+    if (currrentPage === "pomodoro") {
+        loadPage("settings");
+        currrentPage = "settings";
+    }
+    else {
+        loadPage("pomodoro");
+        currrentPage = "pomodoro";
+    }
 
 }
 
@@ -157,6 +166,7 @@ document.addEventListener("DOMContentLoaded", () => {
             repetitions
         ));
     document.getElementById("reset").addEventListener("click", () => resetTimer());
+    document.getElementById("settings").addEventListener("click", () => togglePages());
 });
 
 
