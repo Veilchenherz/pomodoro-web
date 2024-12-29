@@ -1,5 +1,5 @@
 <div class="main-page">
-  <h1>Settings</h1>
+  <h1 id="settings-heading">Settings</h1>
 
   <div class="settings">
     <label for="work" id="work-label">Duration Working</label>
@@ -8,9 +8,9 @@
     <input type="text" id="work-min" value="min" disabled />
     <input type="text" id="short-min" value="min" disabled />
     <input type="text" id="long-min" value="min" disabled />
-    <input type="text" id="work-input" name="work" />
-    <input type="text" id="short-input" name="short" />
-    <input type="text" id="long-input" name="long" />
+    <input type="number" min="1" max="59" id="work-input" name="work" />
+    <input type="number" min="1" max="59" id="short-input" name="short" />
+    <input type="number" min="1" max="59" id="long-input" name="long" />
     <button id="save-button">Save</button>
   </div>
 </div>

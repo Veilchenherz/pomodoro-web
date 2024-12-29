@@ -27,6 +27,8 @@ function displayTimer(minutes, seconds) {
 
     let time = minutes + ":" + seconds;
 
+    console.log(time);
+
     document.getElementById("timer").innerText = time;
 }
 
@@ -35,6 +37,7 @@ function displayTimer(minutes, seconds) {
 // takes the string to display as an input
 function displayAction (actionText) {
 
+    console.log(actionText);
     document.getElementById("heading").innerText = actionText;
 
 }
@@ -50,8 +53,6 @@ async function pomodoroTimer (duration) {
             let minutesLeft = Math.floor(duration / 60);
 
             displayTimer(minutesLeft, secondsLeft);
-            
-            console.log(minutesLeft + ":" + secondsLeft);
             duration--;
 
             if (duration < 0) {
@@ -121,52 +122,29 @@ async function pomodoroFlow(workDur, shortDur, longDur, repetitions) {
 }
 
 
-// html templating ########################################################################
-
-let currrentPage = "pomodoro";
-
-// loads the page content (pomodoro card or settings)
-async function loadPage(page) {
-
-    let source = page + ".html";
-    let response = await fetch("../../" + source);
-    console.log(typeof(response));
-    console.log(response);
-    let content = await response.text();
-    document.getElementById("content").innerHTML = content;
-    currrentPage = page;
-
-}
-
-// toggles between the main pomodoro timer page and the settings page
-function togglePages() {
-    
-    if (currrentPage === "pomodoro") {
-        loadPage("settings");
-        currrentPage = "settings";
-    }
-    else {
-        loadPage("pomodoro");
-        currrentPage = "pomodoro";
-    }
-
-}
-
-
-// waits for loading of the DOM
+// waits for loading the DOM
 // then assignes the start button to call the pomodoroFlow function
 // and the reset button to call the resetTimer function
 document.addEventListener("DOMContentLoaded", () => {
-    loadPage("pomodoro");
-    document.getElementById("start").addEventListener("click", 
-        () => pomodoroFlow(
-            workingDuration, 
-            shortBreakDuration, 
-            longBreakDuration, 
-            repetitions
-        ));
-    document.getElementById("reset").addEventListener("click", () => resetTimer());
-    document.getElementById("settings").addEventListener("click", () => togglePages());
+
+    const contentContainer = document.getElementById("content");
+
+    contentContainer.addEventListener("click", (event) => {
+        if (event.target && event.target.id === "start") {
+            console.log("Start wurde gedrückt!");
+            pomodoroFlow(
+                workingDuration, 
+                shortBreakDuration, 
+                longBreakDuration, 
+                repetitions
+            );
+        }
+
+        else if (event.target && event.target.id === "reset") {
+            console.log("Reset wurde gedrückt!");
+            resetTimer();
+        }
+    });
 });
 
 
