@@ -1,7 +1,6 @@
-
 // html templating
 
-//let currrentPage = "pomodoro";
+let currrentPage;
 
 // loads the page content (pomodoro card or settings)
 async function loadPage(page) {
@@ -21,10 +20,12 @@ function togglePages() {
     if (currrentPage === "pomodoro") {
         loadPage("settings");
         currrentPage = "settings";
+        document.getElementById("settings").innerHTML = "<img class='icon' src='assets/images/arrow_back_20dp.png' alt='settings icon'>";
     }
     else {
         loadPage("pomodoro");
         currrentPage = "pomodoro";
+        document.getElementById("settings").innerHTML = "<img class='icon' src='assets/images/settings_20dp.png' alt='settings icon'>";
     }
 
 }

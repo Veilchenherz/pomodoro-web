@@ -27,8 +27,6 @@ function displayTimer(minutes, seconds) {
 
     let time = minutes + ":" + seconds;
 
-    console.log(time);
-
     document.getElementById("timer").innerText = time;
 }
 
@@ -37,7 +35,6 @@ function displayTimer(minutes, seconds) {
 // takes the string to display as an input
 function displayAction (actionText) {
 
-    console.log(actionText);
     document.getElementById("heading").innerText = actionText;
 
 }
@@ -66,13 +63,18 @@ async function pomodoroTimer (duration) {
 
 // resets the timer and the repetitions to zero
 function resetTimer () {
+
     displayAction("Pomodoro");
+
     if (timerID !== null) {
+
         clearInterval(timerID);
-        timerRunning = false;
         displayTimer(0, 0);
+
+        timerRunning = false;
         repetitions = 0;
     }
+
 }
 
 
@@ -131,7 +133,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     contentContainer.addEventListener("click", (event) => {
         if (event.target && event.target.id === "start") {
-            console.log("Start wurde gedrückt!");
             pomodoroFlow(
                 workingDuration, 
                 shortBreakDuration, 
@@ -141,7 +142,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         else if (event.target && event.target.id === "reset") {
-            console.log("Reset wurde gedrückt!");
             resetTimer();
         }
     });
