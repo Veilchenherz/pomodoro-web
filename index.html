@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pomodoro-Timer</title>
     <link rel="stylesheet" href="./assets/css/style.css" />
+    <script src="./assets/js/script.js" defer></script>
   </head>
   <body>
     <div id="whole-page">
@@ -18,25 +19,7 @@
         <a class="navbar" id="settings" href="./settings.html">Settings</a>
       </div>
 
-      <div class="main-page">
-        <h1 id="heading">Pomodoro</h1>
-
-        <div class="tomato">
-          <img
-            src="./assets/images/tomato.png"
-            alt="tomato"
-            class="image-tomato"
-          />
-          <div class="timer">
-            <span class="timer" id="timer">00:00</span>
-          </div>
-        </div>
-
-        <div class="main-buttons">
-          <button class="main" id="start">Start</button>
-          <button class="main" id="reset">Reset</button>
-        </div>
-      </div>
+      <div id="content"></div>
 
       <div id="footer">
         <p>© Laurin Homberg</p>
@@ -51,6 +34,5 @@
       </div>
     </div>
 
-    <script src="./assets/js/script.js"></script>
   </body>
 </html>

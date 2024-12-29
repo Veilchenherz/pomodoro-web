@@ -1,3 +1,6 @@
+
+// pomodoro timer functionality
+
 let workingDuration = 25;
 let shortBreakDuration = 5;
 let longBreakDuration = 20;
@@ -118,10 +121,34 @@ async function pomodoroFlow(workDur, shortDur, longDur, repetitions) {
 }
 
 
+// html templating ########################################################################
+
+let currrentPage = "pomodoro";
+
+// loads the page content (pomodoro card or settings)
+async function loadPage(page) {
+
+    let source = page + ".html";
+    let response = await fetch("../../" + source);
+    console.log(typeof(response));
+    console.log(response);
+    let content = await response.text();
+    document.getElementById("content").innerHTML = content;
+    currrentPage = page;
+
+}
+
+// toggles between the main pomodoro timer page and the settings page
+function togglePages() {
+
+}
+
+
 // waits for loading of the DOM
 // then assignes the start button to call the pomodoroFlow function
 // and the reset button to call the resetTimer function
 document.addEventListener("DOMContentLoaded", () => {
+    loadPage("pomodoro");
     document.getElementById("start").addEventListener("click", 
         () => pomodoroFlow(
             workingDuration, 
@@ -131,4 +158,6 @@ document.addEventListener("DOMContentLoaded", () => {
         ));
     document.getElementById("reset").addEventListener("click", () => resetTimer());
 });
+
+
 

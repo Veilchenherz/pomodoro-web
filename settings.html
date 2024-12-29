@@ -1,53 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pomodoro-Timer</title>
-    <link rel="stylesheet" href="./assets/css/style.css" />
-    <link rel="stylesheet" href="./assets/css/settings-style.css" />
-  </head>
-  <body>
-    <div id="whole-page">
-      <div id="navbar">
-        <a
-          class="navbar"
-          id="about"
-          href="https://en.wikipedia.org/wiki/Pomodoro_Technique"
-          >About Pomodoro</a
-        >
-        <a class="navbar" id="settings" href="./index.html">Home</a>
-      </div>
+<div class="main-page">
+  <h1>Settings</h1>
 
-      <div class="main-page">
-        <h1>Settings</h1>
-
-        <div class="settings">
-          <label for="work" id="work-label">Duration Working</label>
-          <label for="short" id="short-label">Duration Short Break</label>
-          <label for="long" id="long-label">Duration Long Break</label>
-          <input type="text" id="work-min" value="min" disabled />
-          <input type="text" id="short-min" value="min" disabled />
-          <input type="text" id="long-min" value="min" disabled />
-          <input type="text" id="work-input" name="work" />
-          <input type="text" id="short-input" name="short" />
-          <input type="text" id="long-input" name="long" />
-          <button id="save-button">Save</button>
-        </div>
-      </div>
-
-      <div id="footer">
-        <a
-          class="navbar github"
-          href="https://github.com/Veilchenherz/pomodoro-web"
-          >GitHub</a
-        >
-        <a class="navbar dev" href="https://www.linkedin.com/in/laurin-homberg/"
-          >About the Dev</a
-        >
-      </div>
-    </div>
-
-    <script src="./assets/js/settings.js"></script>
-  </body>
-</html>
+  <div class="settings">
+    <label for="work" id="work-label">Duration Working</label>
+    <label for="short" id="short-label">Duration Short Break</label>
+    <label for="long" id="long-label">Duration Long Break</label>
+    <input type="text" id="work-min" value="min" disabled />
+    <input type="text" id="short-min" value="min" disabled />
+    <input type="text" id="long-min" value="min" disabled />
+    <input type="text" id="work-input" name="work" />
+    <input type="text" id="short-input" name="short" />
+    <input type="text" id="long-input" name="long" />
+    <button id="save-button">Save</button>
+  </div>
+</div>
