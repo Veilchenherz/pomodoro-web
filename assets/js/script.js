@@ -1,4 +1,3 @@
-
 // pomodoro timer functionality
 
 let workingDuration = 25;
@@ -9,143 +8,120 @@ let repetitions = 0;
 let timerID = null;
 let timerRunning = false;
 
-
-// takes minutes and seconds as input and displays those on the screen 
+// takes minutes and seconds as input and displays those on the screen
 // with correct formatting (0 added in front, if number of digits below 2)
 function displayTimer(minutes, seconds) {
+  let secondsDigits = Math.floor(Math.log10(seconds)) + 1;
+  let minutesDigits = Math.floor(Math.log10(minutes)) + 1;
 
-    let secondsDigits = Math.floor(Math.log10(seconds)) + 1;
-    let minutesDigits = Math.floor(Math.log10(minutes)) + 1;
+  if (secondsDigits < 2) {
+    seconds = "0" + seconds;
+  }
 
-    if (secondsDigits < 2) {
-        seconds = "0" + seconds;
-    }
+  if (minutesDigits < 2) {
+    minutes = "0" + minutes;
+  }
 
-    if (minutesDigits < 2) {
-        minutes = "0" + minutes;
-    }
+  let time = minutes + ":" + seconds;
 
-    let time = minutes + ":" + seconds;
-
-    document.getElementById("timer").innerText = time;
+  document.getElementById("timer").innerText = time;
 }
-
 
 // displays a string on the heading field of the pomodoro-card
 // takes the string to display as an input
-function displayAction (actionText) {
-
-    document.getElementById("heading").innerText = actionText;
-
+function displayAction(actionText) {
+  document.getElementById("heading").innerText = actionText;
 }
-
 
 // takes time in seconds as input and counts down from the given time to zero
 // returns false as soon as the timer reaches zero
-async function pomodoroTimer (duration) {
+async function pomodoroTimer(duration) {
+  return new Promise((resolve) => {
+    timerID = setInterval(function timeStep() {
+      let secondsLeft = duration % 60;
+      let minutesLeft = Math.floor(duration / 60);
 
-    return new Promise((resolve) => {
-        timerID = setInterval(function timeStep() {
-            let secondsLeft = duration % 60;
-            let minutesLeft = Math.floor(duration / 60);
+      displayTimer(minutesLeft, secondsLeft);
+      duration--;
 
-            displayTimer(minutesLeft, secondsLeft);
-            duration--;
-
-            if (duration < 0) {
-                clearInterval(timerID);
-                resolve(false);
-            }
-        }, 1000);
-    });
+      if (duration < 0) {
+        clearInterval(timerID);
+        resolve(false);
+      }
+    }, 1000);
+  });
 }
-
 
 // resets the timer and the repetitions to zero
-function resetTimer () {
+function resetTimer() {
+  displayAction("Pomodoro");
 
-    displayAction("Pomodoro");
+  if (timerID !== null) {
+    clearInterval(timerID);
+    displayTimer(0, 0);
 
-    if (timerID !== null) {
-
-        clearInterval(timerID);
-        displayTimer(0, 0);
-
-        timerRunning = false;
-        repetitions = 0;
-    }
-
+    timerRunning = false;
+    repetitions = 0;
+  }
 }
-
 
 // controls the flow of the different stages while running the pomodoro app
 // starts the correct timers according to the number of repetitions
 async function pomodoroFlow(workDur, shortDur, longDur, repetitions) {
+  let workDurationSeconds = workDur * 60;
+  let shortDurationSeconds = shortDur * 60;
+  let longDurationSeconds = longDur * 60;
 
-    let workDurationSeconds = workDur * 60;
-    let shortDurationSeconds = shortDur * 60;
-    let longDurationSeconds = longDur * 60;
+  timerRunning = true;
 
-    timerRunning = true;
+  while (timerRunning) {
+    repetitions++;
 
-    while (timerRunning) {
+    let returnValue = true;
 
-        repetitions++;
+    switch (0) {
+      case repetitions % 8: {
+        displayAction("Long Break");
+        while (returnValue) {
+          returnValue = await pomodoroTimer(longDurationSeconds);
+        }
+        break;
+      }
 
-        let returnValue = true;
+      case repetitions % 2: {
+        displayAction("Short Break");
+        while (returnValue) {
+          returnValue = await pomodoroTimer(shortDurationSeconds);
+        }
+        break;
+      }
 
-        switch (0) {
-
-            case (repetitions % 8): {
-                displayAction("Long Break");
-                while (returnValue) {
-                    returnValue = await pomodoroTimer(longDurationSeconds);
-                }
-                break;
-            }
-
-            case (repetitions % 2): {
-                displayAction("Short Break");
-                while (returnValue) {
-                    returnValue = await pomodoroTimer(shortDurationSeconds);
-                }
-                break;
-            }
-
-            default: {
-                displayAction("Work");
-                while (returnValue) {
-                    returnValue = await pomodoroTimer(workDurationSeconds);
-                }
-                
-            }
-        } 
+      default: {
+        displayAction("Work");
+        while (returnValue) {
+          returnValue = await pomodoroTimer(workDurationSeconds);
+        }
+      }
     }
+  }
 }
-
 
 // waits for loading the DOM
 // then assignes the start button to call the pomodoroFlow function
 // and the reset button to call the resetTimer function
 document.addEventListener("DOMContentLoaded", () => {
+  const contentContainer = document.getElementById("content");
 
-    const contentContainer = document.getElementById("content");
-
-    contentContainer.addEventListener("click", (event) => {
-        if (event.target && event.target.id === "start") {
-            pomodoroFlow(
-                workingDuration, 
-                shortBreakDuration, 
-                longBreakDuration, 
-                repetitions
-            );
-        }
-
-        else if (event.target && event.target.id === "reset") {
-            resetTimer();
-        }
-    });
+  contentContainer.addEventListener("click", (event) => {
+    if (event.target && event.target.id === "start") {
+      pomodoroFlow(
+        workingDuration,
+        shortBreakDuration,
+        longBreakDuration,
+        repetitions
+      );
+    } else if (event.target && event.target.id === "reset") {
+      resetTimer();
+    }
+  });
 });
-
-
-
