@@ -4,8 +4,10 @@ let currrentPage;
 
 // loads the page content (pomodoro card or settings)
 async function loadPage(page) {
-  let source = page + ".html";
-  let response = await fetch("../../" + source);
+  const baseURL = `${window.location.origin}${window.location.pathname}`;
+  const source = `${baseURL}${page}.html`;
+  
+  let response = await fetch(source);
   let content = await response.text();
   document.getElementById("content").innerHTML = content;
 
