@@ -15,26 +15,32 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 40px;
+  transition: all 1s ease;
   overflow-y: auto;
 }
 
-#navbar {
-  background-color: #62825D;
+.page-flex-item {
+  transition: transform 1s ease, opacity 1s ease;
+}
+
+#navbar,
+#footer {
+  background-color: #62825d;
   display: flex;
   opacity: 0.7;
+}
+
+#navbar {
   margin-bottom: auto;
 }
 
 #footer {
   margin-top: auto;
-  background-color: #62825D;
-  display: flex;
-  justify-content: right;
-  opacity: 0.7;
 }
 
-#footer a, #navbar a {
+#footer a,
+#navbar a,
+#footer p {
   font-size: 1.6rem;
   margin-top: 15px;
   margin-bottom: 15px;
@@ -45,15 +51,12 @@ body {
 }
 
 #footer p {
-  font-size: 1.6rem;
-  margin-top: 15px;
-  margin-bottom: 15px;
   margin-right: auto;
-  margin-left: 25px;
 }
 
-#footer a:hover, #navbar a:hover {
-  color: #C2FFC7; 
+#footer a:hover,
+#navbar a:hover {
+  color: #c2ffc7;
   cursor: pointer;
 }
 
@@ -74,8 +77,9 @@ body {
   padding-left: 40px;
   padding-right: 40px;
   padding-bottom: 40px;
-  background-color: #62825D;
+  background-color: #62825d;
   box-shadow: 5px 5px 50px hsl(0, 0%, 60%);
+  margin: 40px;
 }
 
 .tomato {
@@ -89,7 +93,6 @@ body {
   max-width: 350px;
   margin-bottom: 2rem;
 }
-
 
 .timer {
   position: absolute;
@@ -134,7 +137,7 @@ h1 {
 }
 
 .main:active {
-  background-color: #62825D;
+  background-color: #62825d;
 }
 
 .settings {
@@ -147,7 +150,6 @@ h1 {
 .settings * {
   grid-column-start: 1;
 }
-
 
 .settings button {
   height: 35px;
@@ -187,7 +189,7 @@ h1 {
 }
 
 .settings button:active {
-  background-color: #62825D;
+  background-color: #62825d;
 }
 
 #save-button {
@@ -195,11 +197,15 @@ h1 {
   align-self: end;
 }
 
-#work-input, #short-input, #long-input {
+#work-input,
+#short-input,
+#long-input {
   border-radius: 50px 0px 0px 50px;
 }
 
-#work-min, #short-min, #long-min {
+#work-min,
+#short-min,
+#long-min {
   grid-column-start: 2;
   border-radius: 0px 50px 50px 0px;
   width: 60px;
@@ -207,6 +213,34 @@ h1 {
 
 .icon {
   height: 1.8rem;
+}
+
+.alertbox {
+  align-self: center;
+  margin-top: 40px;
+  background-color: #62825d;
+  max-width: 600px;
+  border-radius: 50px;
+  width: 496px;
+}
+
+.alert-placeholder {
+  height: 0;
+  opacity: 0;
+  transition: height 1s ease, opacity 1s ease;
+}
+
+.alert-placeholder.active {
+  height: auto;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.alertbox-inner {
+  text-align: center;
+  font-size: 2rem;
+  flex-grow: 1;
+  transition: flex-grow 1000ms linear;
 }
 
 @media (max-width: 500px) {

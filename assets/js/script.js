@@ -40,9 +40,22 @@ async function pomodoroTimer(duration) {
     timerID = setInterval(function timeStep() {
       let secondsLeft = duration % 60;
       let minutesLeft = Math.floor(duration / 60);
+      let timerGreaterFive = false;
+
+      if (duration > 300) {
+        timerGreaterFive = true;
+      }
 
       displayTimer(minutesLeft, secondsLeft);
       duration--;
+
+      if (timerGreaterFive) {
+        if (duration === 300) {
+          timerGreaterFive = false;
+          console.log("Five minues left!");
+          openAlertBox("Five minutes left!", "");
+        }
+      }
 
       if (duration < 0) {
         clearInterval(timerID);
@@ -85,6 +98,7 @@ async function pomodoroFlow(workDur, shortDur, longDur, repetitions) {
         while (returnValue) {
           returnValue = await pomodoroTimer(longDurationSeconds);
         }
+        openAlertBox("Time is up, start", "working!");
         break;
       }
 
@@ -93,17 +107,41 @@ async function pomodoroFlow(workDur, shortDur, longDur, repetitions) {
         while (returnValue) {
           returnValue = await pomodoroTimer(shortDurationSeconds);
         }
+        openAlertBox("Time is up, start", "working!");
         break;
       }
 
       default: {
-        displayAction("Work");
+        let numberOfWorkUnits = Math.round(repetitions / 2);
+        displayAction("Work #" + numberOfWorkUnits);
         while (returnValue) {
           returnValue = await pomodoroTimer(workDurationSeconds);
         }
+        openAlertBox("Time is up, stop", "working!");
       }
     }
   }
+}
+
+//opens an alert box on the top of the page to let the user know that there are 5 min left or that the time is up
+async function openAlertBox(firstHalfText, actionText) {
+  let response = await fetch("./alertbox.html");
+  let content = await response.text();
+
+  const alertBox = document.getElementById("alertbox");
+  alertBox.innerHTML = content;
+  alertBox.classList.add("alertbox", "active");
+
+  document.getElementsByClassName("alert-first-half")[0].innerText =
+    firstHalfText;
+  document.getElementsByClassName("alert-action")[0].innerText = actionText;
+
+  function removeAlertBox() {
+    alertBox.innerHTML = "";
+    alertBox.classList.remove("alertbox", "active");
+  }
+
+  setTimeout(removeAlertBox, 5000);
 }
 
 // waits for loading the DOM

@@ -2,16 +2,22 @@
   <h1 id="settings-heading">Settings</h1>
 
   <div class="settings">
-    <label for="work" id="work-label">Duration Working</label>
-    <input type="number" min="1" max="59" id="work-input" name="work" />
+    <label for="work" id="work-label" class="settings-label"
+      >Duration Working</label
+    >
+    <input type="text" id="work-input" name="work" />
     <input type="text" id="work-min" value="min" disabled />
 
-    <label for="short" id="short-label">Duration Short Break</label>
-    <input type="number" min="1" max="59" id="short-input" name="short" />
+    <label for="short" id="short-label" class="settings-label"
+      >Duration Short Break</label
+    >
+    <input type="text" id="short-input" name="short" />
     <input type="text" id="short-min" value="min" disabled />
 
-    <label for="long" id="long-label">Duration Long Break</label>
-    <input type="number" min="1" max="59" id="long-input" name="long" />
+    <label for="long" id="long-label" class="settings-label"
+      >Duration Long Break</label
+    >
+    <input type="text" id="long-input" name="long" />
     <input type="text" id="long-min" value="min" disabled />
 
     <button id="save-button">Save</button>
