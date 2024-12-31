@@ -28,7 +28,7 @@ function getInputDurations() {
       Number(element) > 120
     ) {
       isValid = false;
-      inputLabels[index].innerText = "Invalid input.";
+      inputLabels[index].innerText = "Invalid input";
       setInterval(
         () => (inputLabels[index].innerText = standardLabels[index]),
         5000
