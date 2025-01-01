@@ -255,6 +255,10 @@ h1 {
     width: 200px;
   }
 
+  .alertbox {
+    max-width: 390px;
+  }
+
   .main-page {
     max-width: 400px;
   }
