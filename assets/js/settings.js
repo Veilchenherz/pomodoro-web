@@ -1,10 +1,12 @@
 // input handling for the settings page
 
-let isValid = true;
+let isValid;
 
 // get durations for work, short and long break from the input fields
 // this function is executed, when the user presses the save button
 function getInputDurations() {
+  isValid = true;
+
   const userDurations = [
     document.getElementById("work-input").value,
     document.getElementById("short-input").value,
@@ -29,10 +31,11 @@ function getInputDurations() {
     ) {
       isValid = false;
       inputLabels[index].innerText = "Invalid input.";
-      setInterval(
-        () => (inputLabels[index].innerText = standardLabels[index]),
-        5000
-      );
+      inputLabels[index].style.color = "yellow";
+      setInterval(() => {
+        inputLabels[index].innerText = standardLabels[index];
+        inputLabels[index].style.color = "white";
+      }, 5000);
     }
   }
 
@@ -52,6 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
       getInputDurations();
       if (isValid) {
         togglePages();
+        openAlertBox("Settings saved!", "");
       }
     }
   });
