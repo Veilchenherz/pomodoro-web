@@ -30,7 +30,7 @@ function getInputDurations() {
       Number(element) > 120
     ) {
       isValid = false;
-      inputLabels[index].innerText = "Invalid input.";
+      inputLabels[index].innerText = "Invalid input";
       inputLabels[index].style.color = "yellow";
       setInterval(() => {
         inputLabels[index].innerText = standardLabels[index];
