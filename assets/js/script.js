@@ -151,7 +151,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const contentContainer = document.getElementById("content");
 
   contentContainer.addEventListener("click", (event) => {
-    if (event.target && event.target.id === "start") {
+    if (event.target && event.target.id === "start" && !timerRunning) {
       pomodoroFlow(
         workingDuration,
         shortBreakDuration,
