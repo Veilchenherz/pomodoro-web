@@ -171,7 +171,7 @@ h1 {
   align-self: end;
   color: white;
   width: 180px;
-  text-align: center;
+  text-align: start;
 }
 
 .settings input {
@@ -255,10 +255,10 @@ h1 {
     width: 200px;
   }
 
-    .alertbox {
+  .alertbox {
     max-width: 390px;
   }
-  
+
   .main-page {
     max-width: 400px;
   }

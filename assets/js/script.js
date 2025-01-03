@@ -123,7 +123,8 @@ async function pomodoroFlow(workDur, shortDur, longDur, repetitions) {
   }
 }
 
-//opens an alert box on the top of the page to let the user know that there are 5 min left or that the time is up
+// opens an alert box on the top of the page to let the user know
+// that there are 5 min left or that the time is up
 async function openAlertBox(firstHalfText, actionText) {
   let response = await fetch("./alertbox.html");
   let content = await response.text();
