@@ -7,6 +7,7 @@ let repetitions = 0;
 
 let timerID = null;
 let timerRunning = false;
+let alertSoundOn = false;
 
 // takes minutes and seconds as input and displays those on the screen
 // with correct formatting (0 added in front, if number of digits below 2)
@@ -53,7 +54,7 @@ async function pomodoroTimer(duration) {
         if (duration === 300) {
           timerGreaterFive = false;
           console.log("Five minues left!");
-          openAlertBox("Five minutes left!", "");
+          openAlertBox("Five minutes left!", "", alertSoundOn);
         }
       }
 
@@ -98,7 +99,7 @@ async function pomodoroFlow(workDur, shortDur, longDur, repetitions) {
         while (returnValue) {
           returnValue = await pomodoroTimer(longDurationSeconds);
         }
-        openAlertBox("Time is up, start", "working!");
+        openAlertBox("Time is up, start", "working!", alertSoundOn);
         break;
       }
 
@@ -107,7 +108,7 @@ async function pomodoroFlow(workDur, shortDur, longDur, repetitions) {
         while (returnValue) {
           returnValue = await pomodoroTimer(shortDurationSeconds);
         }
-        openAlertBox("Time is up, start", "working!");
+        openAlertBox("Time is up, start", "working!", alertSoundOn);
         break;
       }
 
@@ -117,7 +118,7 @@ async function pomodoroFlow(workDur, shortDur, longDur, repetitions) {
         while (returnValue) {
           returnValue = await pomodoroTimer(workDurationSeconds);
         }
-        openAlertBox("Time is up, stop", "working!");
+        openAlertBox("Time is up, stop", "working!", alertSoundOn);
       }
     }
   }
@@ -125,9 +126,10 @@ async function pomodoroFlow(workDur, shortDur, longDur, repetitions) {
 
 // opens an alert box on the top of the page to let the user know
 // that there are 5 min left or that the time is up
-async function openAlertBox(firstHalfText, actionText) {
+async function openAlertBox(firstHalfText, actionText, alertSoundStatus) {
   let response = await fetch("./alertbox.html");
   let content = await response.text();
+  const alertAudio = new Audio("./assets/sounds/PomoAlert.mp3");
 
   const alertBox = document.getElementById("alertbox");
   alertBox.innerHTML = content;
@@ -136,6 +138,10 @@ async function openAlertBox(firstHalfText, actionText) {
   document.getElementsByClassName("alert-first-half")[0].innerText =
     firstHalfText;
   document.getElementsByClassName("alert-action")[0].innerText = actionText;
+
+  if (alertSoundStatus) {
+    alertAudio.play();
+  }
 
   function removeAlertBox() {
     alertBox.innerHTML = "";

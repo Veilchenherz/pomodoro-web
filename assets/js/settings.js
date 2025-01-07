@@ -32,6 +32,13 @@ function showErrorMessage(messages, indices) {
 // get durations for work, short and long break from the input fields
 // this function is executed, when the user presses the save button
 function getInputDurations() {
+  const alertCheckbox = document.getElementById("alert-input").checked;
+
+  if (alertCheckbox) {
+    alertSoundOn = true;
+    console.log("Sound activated");
+  }
+
   isValid = true;
 
   const userDurations = [
@@ -80,7 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (isValid) {
         togglePages();
-        openAlertBox("Settings saved!", "");
+        openAlertBox("Settings saved!", "", false);
       }
     }
   });

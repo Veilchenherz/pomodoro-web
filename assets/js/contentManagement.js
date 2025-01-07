@@ -21,6 +21,10 @@ async function loadPage(page) {
     document
       .getElementById("long-input")
       .setAttribute("value", longBreakDuration);
+
+    if (alertSoundOn) {
+      document.getElementById("alert-input").checked = true;
+    }
   }
 
   currrentPage = page;
