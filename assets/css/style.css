@@ -39,8 +39,7 @@ body {
 }
 
 #footer a,
-#navbar a,
-#footer p {
+#navbar a {
   font-size: 1.6rem;
   margin-top: 15px;
   margin-bottom: 15px;
@@ -51,8 +50,8 @@ body {
   text-align: center;
 }
 
-#footer p {
-  margin-right: auto;
+#copyright {
+  margin-right: auto !important;
 }
 
 #footer a:hover,
@@ -183,6 +182,12 @@ h1 {
   text-align: center;
   font-size: 1.2rem;
   width: 100px;
+}
+
+#alert-input {
+  grid-column-start: 2;
+  align-self: flex-end;
+  accent-color: #6cb86a;
 }
 
 .settings button:hover {
