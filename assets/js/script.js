@@ -1,12 +1,18 @@
-
 // pomodoro timer functionality
 
+// duration of work units, short and long breaks in minutes
 let workingDuration = 25;
 let shortBreakDuration = 5;
 let longBreakDuration = 20;
+
+// counts the number of units the user went through (work, short and long break)
 let repetitions = 0;
 
+// setInterval object which is controlled by multiple functions
+// this object gets created for every countdown that runs
 let timerID = null;
+
+// boolean to check if a countdown timer is running atm or not
 let timerRunning = false;
 
 
