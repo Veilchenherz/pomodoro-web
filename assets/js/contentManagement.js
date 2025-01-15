@@ -1,5 +1,6 @@
 // html templating
 
+// currently opened page on the website (either the timer or the settings)
 let currrentPage;
 
 // loads the page content (pomodoro card or settings)
@@ -9,6 +10,7 @@ async function loadPage(page) {
   let content = await response.text();
   document.getElementById("content").innerHTML = content;
 
+  // load the durations for the different units and display them on the settings page
   if (page === "settings") {
     document
       .getElementById("work-input")
@@ -20,24 +22,33 @@ async function loadPage(page) {
       .getElementById("long-input")
       .setAttribute("value", longBreakDuration);
 
+    // load the setting for the alert sound  
     if (alertSoundOn) {
       document.getElementById("alert-input").checked = true;
     }
   }
 
+  // after a page is loaded, it becomes the currently loaded page
   currrentPage = page;
 }
 
 // toggles between the main pomodoro timer page and the settings page
 function togglePages() {
+
+  // change page to settings
   if (currrentPage === "pomodoro") {
     loadPage("settings");
-    currrentPage = "settings";
+
+    // change settings icon to back arrow icon
     document.getElementById("settings").innerHTML =
       "<img class='icon' src='assets/images/arrow_back_20dp.png' alt='settings icon'>";
-  } else {
+  } 
+  
+  // change page to timer
+  else {
     loadPage("pomodoro");
-    currrentPage = "pomodoro";
+
+    // change arrow icon to settings gear icon
     document.getElementById("settings").innerHTML =
       "<img class='icon' src='assets/images/settings_20dp.png' alt='settings icon'>";
   }
