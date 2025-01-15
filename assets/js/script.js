@@ -36,7 +36,7 @@ function displayTimer(minutes, seconds) {
     minutes = "0" + minutes;
   }
 
-  // construct the time that is shown the user
+  // construct the time 
   let time = minutes + ":" + seconds;
 
   // show time on the website
