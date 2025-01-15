@@ -1,12 +1,21 @@
 // pomodoro timer functionality
 
+// duration of work units, short breaks and long breaks in minutes
 let workingDuration = 25;
 let shortBreakDuration = 5;
 let longBreakDuration = 20;
+
+// counter for the number of units of any kind (work, short break or long break)
 let repetitions = 0;
 
+// setInterval return value that allows the control of the countdown within multiple functions
 let timerID = null;
+
+// boolean to avoid starting a countdown timer while another one is running
 let timerRunning = false;
+
+// boolean which hold the information wether the user
+// wants an alert sound or not when the alert box appeares
 let alertSoundOn = false;
 
 // takes minutes and seconds as input and displays those on the screen
