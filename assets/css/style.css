@@ -3,6 +3,7 @@
   src: url(../fonts/Roboto/Roboto-Light.ttf);
 }
 
+
 body {
   margin: 0;
   font-family: Roboto;
@@ -10,6 +11,9 @@ body {
   background-image: url(../images/background.jpg);
 }
 
+/*
+contains the navigation bar, the alert box, main content and footer
+*/
 #whole-page {
   height: 100vh;
   display: flex;
@@ -38,6 +42,9 @@ body {
   margin-top: auto;
 }
 
+/*
+elements on the navigation bar and footer
+*/
 #footer a,
 #navbar a {
   font-size: 1.6rem;
@@ -50,21 +57,33 @@ body {
   text-align: center;
 }
 
+/*
+moves the other footer items to a right aligned position
+*/
 #copyright {
   margin-right: auto !important;
 }
 
+/*
+style changes when hovering over the navigation bar and footer items
+*/
 #footer a:hover,
 #navbar a:hover {
   color: #c2ffc7;
   cursor: pointer;
 }
 
+/*
+main content container which is dynamically changed by JS file "contentManagement.js"
+*/
 #content {
   display: flex;
   justify-content: center;
 }
 
+/*
+pomodoro timer card
+*/
 .main-page {
   position: relative;
   display: flex;
@@ -82,6 +101,9 @@ body {
   margin: 40px;
 }
 
+/*
+tomato with timer
+*/
 .tomato {
   position: relative;
   display: grid;
@@ -89,6 +111,9 @@ body {
   grid-template-rows: 100%;
 }
 
+/*
+tomato image
+*/
 .image-tomato {
   max-width: 350px;
   margin-bottom: 2rem;
@@ -101,6 +126,9 @@ body {
   font-size: 4rem;
 }
 
+/*
+heading in the main page card
+*/
 h1 {
   font-size: 3rem;
   background-color: #6cb86a;
@@ -117,11 +145,17 @@ h1 {
   font-size: 2rem;
 }
 
+/*
+flexbox which contains start and reset buttons
+*/
 .main-buttons {
   display: flex;
   gap: 16px;
 }
 
+/*
+start and reset button
+*/
 .main {
   height: 35px;
   width: 200px;
@@ -132,15 +166,24 @@ h1 {
   font-size: 1.5rem;
 }
 
+/*
+style changes while hovering over the start or reset button
+*/
 .main:hover {
   background-color: #7fda7c;
   cursor: pointer;
 }
 
+/*
+style changes when clicking on start or reset button
+*/
 .main:active {
   background-color: #62825d;
 }
 
+/*
+Input fields with label texts and save button
+*/
 .settings {
   display: grid;
   grid-template-columns: 102px 60px;
@@ -148,10 +191,16 @@ h1 {
   gap: 5px;
 }
 
+/*
+input fields, save buttons, labels
+*/
 .settings * {
   grid-column-start: 1;
 }
 
+/*
+save button on the settings page
+*/
 .settings button {
   height: 35px;
   width: 170px;
@@ -165,6 +214,9 @@ h1 {
   justify-self: stretch;
 }
 
+/*
+labels on the settings page
+*/
 .settings label {
   font-size: 1.2rem;
   align-self: end;
@@ -173,6 +225,9 @@ h1 {
   text-align: start;
 }
 
+/*
+input fields on the settings page
+*/
 .settings input {
   align-self: start;
   height: 2rem;
@@ -184,32 +239,50 @@ h1 {
   width: 100px;
 }
 
+/*
+checkbox for turning the alert sound on and off
+*/
 #alert-input {
   grid-column-start: 2;
   align-self: flex-end;
   accent-color: #6cb86a;
 }
 
+/*
+style change of the save button when hovering over it
+*/
 .settings button:hover {
   background-color: #7fda7c;
   cursor: pointer;
 }
 
+/*
+style change of the save button when hovering over it
+*/
 .settings button:active {
   background-color: #62825d;
 }
 
+/*
+save button on the settings page
+*/
 #save-button {
   grid-column-start: 1;
   align-self: end;
 }
 
+/*
+input fields on the settings page
+*/
 #work-input,
 #short-input,
 #long-input {
   border-radius: 50px 0px 0px 50px;
 }
 
+/*
+unit labels for the inputs on the settings page
+*/
 #work-min,
 #short-min,
 #long-min {
@@ -218,6 +291,9 @@ h1 {
   width: 60px;
 }
 
+/*
+icons on the navigation bar and the footer
+*/
 .icon {
   height: 1.8rem;
 }
@@ -231,6 +307,9 @@ h1 {
   width: 496px;
 }
 
+/*
+container in the index.html which is dynamically changed with JS
+*/
 .alert-placeholder {
   height: 0;
   opacity: 0;
@@ -250,6 +329,9 @@ h1 {
   transition: flex-grow 1000ms linear;
 }
 
+/*
+changes for small displays like phones 
+*/
 @media (max-width: 500px) {
   .main-buttons {
     flex-direction: column;
